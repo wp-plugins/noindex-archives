@@ -1,8 +1,8 @@
 === Noindex nofollow archives ===
 Tags: archives, noindex, nofollow
 Requires at least: 2.6
-Tested up to: 2.6
-Stable tag: trunk
+Tested up to: 2.7
+Stable tag: 1.0
 
 This plugin adds rel="noindex,nofollow" to archive links.
 
