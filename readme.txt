@@ -1,8 +1,8 @@
 === Noindex/Nofollow links ===
 Tags: noindex, nofollow, archives, tags, categories, links
 Requires at least: 2.6
-Tested up to: 2.7
-Stable tag: 1.0
+Tested up to: 2.7.1
+Stable tag: 2.0
 Contributors: John Syrinek
 
 This plugin can add rel="noindex,nofollow" to archive, tag, and category links. You can configure exactly which links should get which attributes.
