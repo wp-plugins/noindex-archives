@@ -3,7 +3,7 @@
 Plugin Name: Noindex/Nofollow links
 Plugin URI: http://www.johntron.com
 Description: Allows you to add noindex and/or nofollow attributes to archive, tag, or category links.
-Version: 1.0
+Version: 2.0
 Author: John Syrinek
 Author URI: http://www.johntron.com
 
