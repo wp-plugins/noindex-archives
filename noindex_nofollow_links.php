@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: noindex nofollow archives, tags, and categories
+Plugin Name: Noindex/Nofollow links
 Plugin URI: http://www.johntron.com
 Description: Allows you to add noindex and/or nofollow attributes to archive, tag, or category links.
 Version: 1.0
@@ -25,18 +25,42 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
     
 */
 
-add_filter( 'get_archives_link', 'filter_category_list' );
+add_filter( 'get_archives_link', 'ninfa_filter_archive_links' );
+add_filter( 'wp_list_categories', 'ninfa_filter_categories_links' );
+add_filter( 'wp_tag_cloud', 'ninfa_filter_tag_links' );
+
 add_action('admin_menu', 'ninfa_menu');
 
-function filter_category_list( $text ) {
-	$text = preg_replace( '/<a([^>]+)>/', '<a$1 rel="noindex,nofollow">', $text );
+function ninfa_filter_archive_links( $text ) {
+	return ninfa_filter_with_options( $text, get_option( 'ninfa_archives_noindex' ), get_option( 'ninfa_archives_nofollow' ) );
+}
+function ninfa_filter_categories_links( $text ) {
+	return ninfa_filter_with_options( $text, get_option( 'ninfa_categories_noindex' ), get_option( 'ninfa_categories_nofollow' ) );
+}
+function ninfa_filter_tag_links( $text ) {
+	return ninfa_filter_with_options( $text, get_option( 'ninfa_tags_noindex' ), get_option( 'ninfa_tags_nofollow' ) );
+	
+}
+
+function ninfa_filter_with_options( $text, $noindex, $nofollow ) {
+	if ( $noindex && $nofollow ) {
+		$text = preg_replace( '/<a([^>]+)>/', '<a$1 rel="noindex,nofollow">', $text );
+	} else if ( $noindex ) {
+		$text = preg_replace( '/<a([^>]+)>/', '<a$1 rel="noindex">', $text );
+	} else if ( $nofollow ) {
+		$text = preg_replace( '/<a([^>]+)>/', '<a$1 rel="nofollow">', $text );
+	}
 	return $text;
 }
 
 function ninfa_menu() {
-	add_options_page('Noindex, nofollow links', 'Noindex, nofollow links', 8, __FILE__, 'ninfa_panel');
+	add_options_page('Noindex/Nofollow links', 'Noindex/Nofollow links', 8, __FILE__, 'ninfa_panel');
 }
 
 function ninfa_panel() {
-	?>Works<?php
+	if ( isset( $_POST[ 'action' ] ) ) {
+		echo "Saved";
+	}
+	
+	include 'admin_panel.phtml';
 }
