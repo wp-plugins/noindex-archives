@@ -10,3 +10,7 @@ This plugin can add rel="noindex,nofollow" to archive, tag, and category links. 
 == Installation ==
 1. Upload `noindex_archive` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Screenshots ==
+1. A view of the admin configuration page.
+2. The result of the configuration seen in the first screenshot.
